@@ -20,8 +20,8 @@ const images=[
     }
 ]
 
-function setImage(image){
-    fullImage.value=image.full
+function setImage(picture){
+    fullImage.value=picture
 }
 
 </script>
@@ -31,7 +31,7 @@ function setImage(image){
         <h1 class="text-center text-2xl py-10">Events & Reactivity</h1>
         <div class="">
             <div class="flex space-x-2" >
-                <img @click="setImage(image)" class="cursor-pointer" v-for="image in images" :key="image.thumb" :src="image.thumb" alt="">
+                <img @click="setImage(image.full)" class="cursor-pointer" v-for="image in images" :key="image.thumb" :src="image.thumb" alt="">
                 
             </div>
             <div class="mt-10">
