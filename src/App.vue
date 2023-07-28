@@ -22,6 +22,7 @@ const images=[
 
 function setImage(picture){
     fullImage.value=picture
+    // fullImage.value=image.full
 }
 
 </script>
@@ -32,7 +33,7 @@ function setImage(picture){
         <div class="">
             <div class="flex space-x-2" >
                 <img @click="setImage(image.full)" class="cursor-pointer" v-for="image in images" :key="image.thumb" :src="image.thumb" alt="">
-                
+                <!-- @click= setImage(image) -->
             </div>
             <div class="mt-10">
                 <img class="cursor-pointer w-full" :src="fullImage" alt="">
