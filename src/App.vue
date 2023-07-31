@@ -1,66 +1,50 @@
 <script setup>
 import {ref,reactive} from 'vue'
-const message = ref("Hello Vue 3")
+const blueColor="bg-blue-500 hover:bg-blue-700"
+const greyColor="bg-gray-500 hover:bg-gray-700"
 
-const space = ref(0)
-
-function spaceClicked(){
-    space.value++
-    message.value="you pressed space " + space.value + " times"
-}
-
-function pressedWhat(event){
-  message.value="you pressed " +event.key
-}
-
-function presssedButton(){
-  message.value="you clicked the button"
-}
-
-function ctlRightButton(){
-  message.value="you clicked the ctrl button"
-}
-
-function divClicked(){
-  alert("clicked the div")
-}
-
-function buttonClicked(){
-  alert("clicked the button")
-}
-
+const lights=reactive(
+  [
+    {
+      title:'Light 1',
+      lightOn:'//img.icons8.com/?size=512&id=12244&format=png',
+      lightOff:'//img.icons8.com/?size=512&id=75&format=png',
+      isOn:'true'
+    },
+    {
+      title:'Light 2',
+      lightOn:'//img.icons8.com/?size=512&id=12244&format=png',
+      lightOff:'//img.icons8.com/?size=512&id=75&format=png',
+      isOn:'true'
+    },
+    {
+      title:'Light 3',
+      lightOn:'//img.icons8.com/?size=512&id=12244&format=png',
+      lightOff:'//img.icons8.com/?size=512&id=75&format=png',
+      isOn:'true'
+    }
+  ]
+)
 
 </script>
 
 <template>
- <section class="container mx-auto flex items-center flex-col">
-    <h1 class="text-center text-2xl py-10">Events & Reactivity in Vue.js</h1>
-    <h2 class="mt-10">{{ message }}</h2>
-    <form @submit.prevent action="https://google.com/search">
-      <div class="container mx-auto flex space-x-5 justify-center m-5">
-        <input @keyup.space="spaceClicked()"  name="q" type="text"  class="border border-gray-500 bg-white p-5"  placeholder="Press Space">
-      </div>
-      
-      <div class="container mx-auto flex space-x-5 justify-center m-5">
-        <input @keyup="pressedWhat($event)" name="text" type="text" class="border border-gray-500 bg-white p-5"  placeholder="Type Something">
-      </div>
-
-      <button @click.prevent="presssedButton()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >
-        Button
-      </button>
-
-      <button @click.ctrl="ctlRightButton()" class="bg-blue-500 ml-5 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >
-        Ctrl + Right Click
-      </button>
-
-    </form>
-
-    <div @click="divClicked()" class="bg-gray-200 w-[500px] h-80 mt-5 flex items-center justify-center"  >
-      <button @click="buttonClicked()" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"  >
-        Button
-      </button>
-    </div>
-  </section>
+  <section class="container mx-auto flex items-center flex-col">
+        <h1 class="text-center text-2xl py-10">Assignment</h1>
+        <p class="p-5">Make These Buttons Work</p>
+        <div class="flex justify-between space-x-6">
+            <div class="p-10 border w-96 flex flex-col space-y-5">
+                <button @click="light.isOn=!light.isOn" :class="light.isOn? blueColor : greyColor" v-for="light,index in lights" :key="index" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {{light.title}} 
+                </button>
+                
+            </div>
+            <div class="p-10 border w-96 flex flex-col space-y-5">
+                <img class="w-20" :src="light.isOn? light.lightOn :light.lightOff" v-for="light,index in lights" :key="index" alt="">
+                
+            </div>
+        </div>
+    </section>
 </template>
 
 <style scoped>
